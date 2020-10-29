@@ -17,6 +17,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "clientes")
 public class Cliente {
@@ -46,6 +48,7 @@ public class Cliente {
 	@Column(name = "correo", length = 35, nullable = false)
 	private String correo;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "fecha_nacimiento", nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
