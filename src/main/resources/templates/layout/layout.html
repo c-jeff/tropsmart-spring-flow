@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head(title)">
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="TropSmart Project">
+    <meta name="author" content="Programación en Web">
+    
+	<title th:replace="${title}">TropSmart </title>
+	
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{/css/chosen.min.css}">
+	<link rel="stylesheet" th:href="@{/css/fontawesome.min.css}">
+	<link rel="stylesheet" th:href="@{/css/solid.min.css}">	    
+</head>
+<body>
+  	<header th:fragment="header">
+  		
+  		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		  <a class="navbar-brand" href="#"> <i class="fas fa-truck"></i> TropSmart</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  
+		  <form th:action="@{/transportistas/search}" th:object="${transportista}" method="post" 
+		  		class="form-inline">
+		    <input th:field="*{nombres}" class="form-control mr-sm-2" type="search" 
+		    	placeholder="Buscar por nombres" aria-label="Search">
+		    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+		  </form>
+		  
+		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		    <div class="navbar-nav">
+		      <a class="nav-link" href="#">Cuenta</a>
+		      <a class="nav-link" href="#">Transportes</a>
+		      <a class="nav-link" href="#">Transportistas Favoritos</a>
+		      <a class="nav-link" th:href="@{/logout}">Cerrar Sesión</a>
+		    </div>
+		  </div>
+		</nav>
+  		
+   	</header>
+   	<main>
+   		<section>
+   			
+   		</section>
+   	</main>
+   	
+  	<footer th:fragment="footer" class="page-footer font-small blue pt-4">
+
+  <div class="container-fluid text-center text-md-left">
+
+    <div class="row">
+
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <h5 class="text-uppercase">TropSmart</h5>
+        <p>UniCode</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Soporte</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Preguntas Frecuentes</a>
+          </li>
+          <li>
+            <a href="#!">Contacto</a>
+          </li>
+          <li>
+            <a href="#!">Reporte de fallos</a>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <h5 class="text-uppercase">Redes Sociales</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!"><i class="fab fa-facebook-square"></i></a>
+          </li>
+          <li>
+            <a href="#!"><i class="fab fa-instagram"></i></a>
+          </li>
+          <li>
+            <a href="#!"><i class="fab fa-twitter"></i></a>
+          </li>
+          <li>
+            <a href="#!"><i class="fab fa-linkedin"></i></a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="footer-copyright text-center py-3">©2020 Copyright:
+    <a> TropSmart.com</a>
+  </div>
+  		<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+	    <script th:src="@{/js/popper.min.js}"></script>
+	    <script th:src="@{/js/bootstrap.min.js}"></script>
+	    <script th:src="@{/js/chosen.jquery.min.js}"></script>
+	    <script th:src="@{/js/fontawesome.min.js}"></script>
+	    <script th:src="@{/js/sweetalert.min.js}"></script>
+  	</footer>    
+</body>
+</html>
