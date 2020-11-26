@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head(~{::title})">
+	<title>TropSmart - Mis entregas</title>
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<main>
+	<section class="container">
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item">Transportista</li>
+		    <li class="breadcrumb-item" >Mis Entregas</li>
+		    <li class="breadcrumb-item active" aria-current="page" >Detalle de entregas</li>
+		  </ol>
+		</nav>
+		
+		<div style="display:flex; flex-wrap: wrap;">
+			<div th:each="detalle : ${detalles}" class="card border-primary" style="max-width: 530px; margin:10px;">
+				<div class="card-header text-white bg-primary" > 
+					Servicio Nro <span th:text="${detalle.servicio.id}"></span>: 
+					<span class="font-weight-bold" th:text="${detalle.descripcion}"></span>
+				</div>
+				<div class="row no-gutters">
+					<div class="col-md-4">
+				      <img th:src="@{${detalle.servicio.cliente.imageUrl} + ${detalle.servicio.cliente.id} + '.png'}" class="card-img-top" alt="...">
+				    </div>
+				    <div class="col-md-8">
+				      			  
+					  <div class="card-body">
+					    
+					    <h6 class="card-subtitle" >
+					    	Estado: <span th:text="${detalle.servicio.estado}"></span>
+					    </h6>
+					    <p class="card-text text-right font-weight-bold" th:text="'S/. ' + ${detalle.precioFinal}"></p>
+					    <p class="card-text">
+					    	<strong>Cliente: </strong>
+					    		<span th:text="${detalle.servicio.cliente.nombres}"></span>
+					    		<span th:text="${detalle.servicio.cliente.apellidos}"></span> <br>
+							<strong>Dirección: </strong>
+					    		<span th:text="${detalle.direccion}"></span> <br>   
+					    	<strong>Celular: </strong>
+					    		<span th:text="${detalle.servicio.cliente.celular}"></span> <br>	
+					    	<strong>Correo: </strong>
+					    		<span th:text="${detalle.servicio.cliente.correo}"></span>	
+					    </p>					    			    
+					  </div>				    
+				    </div>
+				</div>	
+				<div class="card-footer">
+				  <a th:if="${detalle.servicio.estado} == 'Pendiente'" th:href="@{'/entregas/' + ${detalle.id} + '/enviar'}" class="btn btn-warning">
+				  	<i class="fas fa-shipping-fast"></i> Confirmar Solicitud
+				  </a>
+				  <a th:if="${detalle.servicio.estado} == 'En Proceso'" th:href="@{'/entregas/' + ${detalle.id} + '/entregar'}" class="btn btn-success">
+				  	<i class="fas fa-truck-loading"></i> Confirmar Entrega
+				  </a>
+				</div>		  
+			</div>
+		</div>
+		
+		
+	</section>
+	</main>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

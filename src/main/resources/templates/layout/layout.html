@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:fragment="head(title)">
 	<meta charset="utf-8">
@@ -25,17 +25,38 @@
 		  
 		  <form th:action="@{/transportistas/search}" th:object="${transportista}" method="post" 
 		  		class="form-inline">
-		    <input th:field="*{nombres}" class="form-control mr-sm-2" type="search" 
+		    <input th:field="*{nombres}" class="form-control mr-sm-2" type="search"
 		    	placeholder="Buscar por nombres" aria-label="Search">
-		    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+		    <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
 		  </form>
 		  
 		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		    <div class="navbar-nav">
-		      <a class="nav-link" href="#">Cuenta</a>
-		      <a class="nav-link" href="#">Transportes</a>
-		      <a class="nav-link" href="#">Transportistas Favoritos</a>
-		      <a class="nav-link" th:href="@{/logout}">Cerrar Sesión</a>
+		      <a class="nav-link" th:href="@{/servicios/mis}" sec:authorize="hasRole('ROLE_CUSTOMER')">
+		      	Mis transportes <span class="badge badge-light">4</span>
+		      </a>
+		      <a class="nav-link" th:href="@{/entregas/mis}" sec:authorize="hasRole('ROLE_DRIVER')">
+		      	Mis entregas
+		      </a>
+		      <a class="nav-link" href="#">Transportistas</a>
+		      <a class="nav-link" href="#" sec:authorize="hasAuthority('ACCESS_DESC')">Descuentos</a>
+		      <a class="nav-link" th:href="@{/solicitudes/mis}" sec:authorize="hasRole('ROLE_CUSTOMER')">Mis solicitudes <span class="badge badge-light">4</span></a>
+		      <a class="btn btn-outline-light" th:href="@{/login}" sec:authorize="isAnonymous()">
+		      	Inicia Sesión
+		      </a>
+		      <ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">			      
+			      <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle btn btn-outline-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          <span sec:authentication="name"></span>
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" th:href="@{/perfil}">Mi Perfil</a>
+			          <div class="dropdown-divider"></div>
+			          <a class="dropdown-item" th:href="@{/logout}">Cerrar sesión</a>
+			        </div>
+			      </li>
+
+			</ul>
 		    </div>
 		  </div>
 		</nav>
@@ -48,6 +69,35 @@
    	</main>
    	
   	<footer th:fragment="footer" class="page-footer font-small blue pt-4">
+
+<div style="background-color: #007bff;">
+      <div class="container">
+        <div class="row py-4 d-flex align-items-center">
+
+          <div class="text-white col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+            <h6 class="mb-0">Redes sociales</h6>
+          </div>
+
+          <div class="col-md-6 col-lg-7 text-center text-md-right">
+            <!-- Twitter -->
+            <a href="#" style="overflow:auto">
+              <img class="mr-4" src="/img/icons/icons8-twitter.svg" style="width: 25px;"> </img>
+            </a>
+            <!-- Google +-->
+            <a href="#" style="overflow:auto">
+              <img class="mr-4" src="/img/icons/icons8-microsoft-outlook.svg" style="width: 25px;"> </img>
+            </a> 
+            <!-- Facebook +-->
+            <a href="#" style="overflow:auto">
+              <img class="mr-4" src="/img/icons/icons8-facebook.svg" style="width: 25px;"> </img>
+            </a>
+           
+           
+          </div>
+
+        </div>
+      </div>
+    </div>
 
   <div class="container-fluid text-center text-md-left">
 
@@ -85,20 +135,14 @@
 
       <div class="col-md-3 mb-md-0 mb-3">
 
-        <h5 class="text-uppercase">Redes Sociales</h5>
+        <h5 class="text-uppercase">Información</h5>
 
         <ul class="list-unstyled">
           <li>
-            <a href="#!"><i class="fab fa-facebook-square"></i></a>
+            <a href="#!">Clientes</a>
           </li>
           <li>
-            <a href="#!"><i class="fab fa-instagram"></i></a>
-          </li>
-          <li>
-            <a href="#!"><i class="fab fa-twitter"></i></a>
-          </li>
-          <li>
-            <a href="#!"><i class="fab fa-linkedin"></i></a>
+            <a href="#!">Transportistas</a>
           </li>
         </ul>
 
