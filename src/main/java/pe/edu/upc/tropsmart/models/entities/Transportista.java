@@ -60,10 +60,10 @@ public class Transportista {
 	@Column(name = "premium")
 	private Boolean premium;
 	
-	@Column(name = "nombre_usuario", length = 20, nullable = false)
+	@Column(name = "nombre_usuario", length = 20)
 	private String nombreUsuario;
 	
-	@Column(name = "clave", length = 30, nullable = false)
+	@Column(name = "clave", length = 30)
 	private String clave;
 	
 	@Column(name = "image_url", length = 70)

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head(~{::title})">
+	<title>TropSmart - Mis Transportes</title>
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<main>
+	<section class="container">
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item">Cliente</li>
+		    <li class="breadcrumb-item active" aria-current="page" >
+		    	Mis Transportes <span class="badge badge-light" th:text="${#lists.size(cliente.servicios)}">2</span>
+		    </li>
+		  </ol>
+		</nav>
+		
+		<div style="display:flex;">
+			<div th:each="servicio : ${cliente.servicios}" th:if="${servicio.estado} != 'Pendiente'" class="card border-primary mb-3" 
+				style="width: 18rem; margin:10px;">
+			  <div th:class="${servicio.estado} == 'En Proceso'? 'card-header text-white bg-warning' : 'card-header text-white bg-success'"> Servicio Nro: <span th:text="${servicio.id}"></span> </div>
+			  <div class="card-body">
+			    <h5 class="card-title">Estado: <span th:text="${servicio.estado}"></span> </h5>
+			    <p class="card-text">Fecha: <span th:text="${servicio.fechaSolicitud}"></span></p>
+			    <p class="card-text">Precio: <strong>S/. <span th:text="${servicio.precioSolicitado}"></span></strong></p>
+			    <p class="card-text"></p>
+			    <a th:href="@{'/servicios/' + ${servicio.id} + '/d'}" class="btn btn-info">Ver Detalle</a>
+			  </div>
+			</div>
+		</div>
+		
+		
+	</section>
+	</main>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

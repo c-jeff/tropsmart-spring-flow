@@ -6,4 +6,5 @@ import pe.edu.upc.tropsmart.models.entities.Servicio;
 
 public interface ServicioService extends CrudService<Servicio, Integer>{
 	List<Servicio> findByEstado(String estado) throws Exception;
+	List<Servicio> findByClienteAndEstado(Integer id, String estado) throws Exception;
 }

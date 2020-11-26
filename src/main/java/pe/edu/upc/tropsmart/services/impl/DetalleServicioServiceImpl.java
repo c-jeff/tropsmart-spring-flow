@@ -50,4 +50,9 @@ public class DetalleServicioServiceImpl implements DetalleServicioService, Seria
 		return detalleServicioRepository.findById(id);
 	}
 
+	@Override
+	public List<DetalleServicio> findByTransportistaAndNotEstado(Integer id, String estado) throws Exception {
+		return detalleServicioRepository.findByTransportistaAndNotEstado(id, estado); 
+	}
+
 }

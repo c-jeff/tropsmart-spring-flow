@@ -28,14 +28,14 @@ public class DetalleServicio {
 	@Column(name = "direccion", length = 40, nullable = false)
 	private String direccion;
 	
-	@Column(name = "precio_final", nullable = false)
+	@Column(name = "precio_final")
 	private Float precioFinal;
 	
-	@Column(name = "fecha_inicio", nullable = false)
+	@Column(name = "fecha_inicio")
 	@Temporal(TemporalType.TIME)
 	private Date fechaInicio;
 	
-	@Column(name = "fecha_fin", nullable = false)
+	@Column(name = "fecha_fin")
 	@Temporal(TemporalType.TIME)
 	private Date fechaFin;
 

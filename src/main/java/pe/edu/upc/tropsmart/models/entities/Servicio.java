@@ -1,5 +1,7 @@
 package pe.edu.upc.tropsmart.models.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "servicios")
@@ -34,6 +40,11 @@ public class Servicio {
 	
 	@Transient
 	private Integer clienteId;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "fecha_solicitud")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date fechaSolicitud;
 	
 	@ManyToOne
 	@JoinColumn(name = "transportista_id")
@@ -85,6 +96,10 @@ public class Servicio {
 		this.clienteId = clienteId;
 	}
 
+	public Date getFechaSolicitud() {
+		return fechaSolicitud;
+	}
+	
 	public Integer getTransportistaId() {
 		return transportistaId;
 	}
@@ -101,6 +116,10 @@ public class Servicio {
 		this.cliente = cliente;
 	}
 
+	public void setFechaSolicitud(Date fechaSolicitud) {
+		this.fechaSolicitud = fechaSolicitud;
+	}
+	
 	public Transportista getTransportista() {
 		return transportista;
 	}
