@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head(~{::title})">
+	<title>Delivery - Result Search</title>
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	
+	<main>
+	<section class="container">
+		<h3>Resultado de la Busqueda: <span th:text="${transportista.nombres}"></span></h3>
+		
+		<div style="display:flex;">
+			<div th:each="transportista : ${transportistas}" class="card" style="width: 18rem; margin:10px;">
+			  <img th:src="@{${transportista.imageUrl} + ${transportista.id} + '.png'}" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title" >
+			    	<a th:href="@{'/transportistas/'+ ${transportista.id} + '/p' }">
+			    		<span th:text="${transportista.nombres} + ' ' + ${transportista.apellidos}"></span>
+			    	</a>
+			    </h5>
+			    <p class="card-text text-right " th:text="${transportista.distrito.nombre}"></p>			    
+			  </div>
+			</div>
+		</div>
+		
+		
+	</section>
+	</main>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head(~{::title})">
+	<title>Delivery - Template</title>
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<main>
+	<section class="container">
+		
+		<div class="card mt-5" >
+			<div class="card-header "><h5> <i class="fas fa-address-card"></i> Perfil</h5></div>
+			<div class="card-body ">
+				<h5 class="card-title">Detalles del Usuario (Frontend: sec:authentication): </h5>
+				<p class="card-text">Username: <span sec:authentication="name">Juan</span> </p>
+				<p class="card-text">Authorities: <span sec:authentication="principal.authorities">[ROLE_]</span> </p>
+				<h5 class="card-title">Detalles del Principal (Frontend: authentication.getPrincipal()): </h5>
+				<p class="card-text">
+					Segmento: <span th:text="${#authentication.getPrincipal().getSegmento()}"></span> 
+				</p>
+				<p class="card-text">
+					Id del Segmento: <span th:text="${#authentication.getPrincipal().getIdSegmento()}"></span> 
+				</p>
+				
+				<div th:switch="${segmento}">					
+					<div th:case="'CLIENTE'">
+						<h5 class="card-title">Detalles del Cliente (Backend: Model): </h5>
+						<p class="card-text">
+							Apellidos y Nombres: 
+							<span th:text="${cliente.apellidos}"></span>, <span th:text="${cliente.nombres}"></span>
+						</p>
+						<p class="card-text">
+							Fecha de Registro: <span th:text="${cliente.fechaRegistro}"></span> 
+						</p>
+						<p class="card-text">
+							Distrito: <span th:text="${cliente.distrito.nombre}"></span> 
+						</p>
+						<p class="card-text">
+							Celular: <span th:text="${cliente.celular}"></span> 
+						</p>
+						<p class="card-text">
+							Correo Electrónico: <span th:text="${cliente.correo}"></span> 
+						</p>
+					</div>
+					<div th:case="'TRANSPORTISTA'">
+						<h5 class="card-title">Detalles del Transportista (Backend: Model): </h5>
+						<p class="card-text">
+							Nombre: <span th:text="${transportista.nombres}"></span>
+						</p>
+						<p class="card-text">
+							Fecha de Registro: <span th:text="${transportista.fechaRegistro}"></span> 
+						</p>
+						<p class="card-text">
+							Distrito: <span th:text="${transportista.distrito.nombre}"></span> 
+						</p>
+						<p class="card-text">
+							Celular: <span th:text="${transportista.celular}"></span> 
+						</p>
+						<p class="card-text">
+							Correo Electrónico: <span th:text="${transportista.correo}"></span> 
+						</p>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</section>
+	</main>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
