@@ -57,4 +57,9 @@ public class ServicioServiceImpl implements ServicioService, Serializable {
 		return servicioRepository.findByEstado(estado);
 	}
 
+	@Override
+	public List<Servicio> findByClienteAndEstado(Integer id, String estado) throws Exception {
+		return servicioRepository.findByClienteAndEstado(id, estado);
+	}
+
 }
