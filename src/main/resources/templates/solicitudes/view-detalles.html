@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head(~{::title})">
+	<title>TropSmart - Mis Solicitudes</title>
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<main>
+	<section class="container">
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item">Cliente</li>
+		    <li class="breadcrumb-item" >Solicitudes</li>
+		    <li class="breadcrumb-item active" aria-current="page" >Detalle de solicitudes</li>
+		  </ol>
+		</nav>
+		
+		<div style="display:flex;">
+			<div class="card" style="width: 18rem; margin:10px;">
+			  <img th:src="@{${servicio.transportista.imageUrl} + ${servicio.transportista.id} + '.png'}" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title" >
+			    	<span th:text="${servicio.transportista.nombres} + ' ' + ${servicio.transportista.apellidos}"></span>
+			    </h5>
+			    <h6 class="card-subtitle mb-2 text-muted" th:text="${servicio.fechaSolicitud}"></h6>
+			    <p class="card-text text-right " th:text="'S/ ' + ${servicio.precioSolicitado}"></p>
+			    			    
+			  </div>
+			  <div class="card-footer">
+			  	<a th:href="@{'/solicitudes/' + ${servicio.id} + '/edp'}" class="btn btn-danger">Cancelar Solicitud</a>
+			  </div>
+			  	
+			</div>
+		</div>
+		
+		
+	</section>
+	</main>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

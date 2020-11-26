@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/layout :: head(~{::title})">
 	<title>Delivery - Template</title>
 </head>
@@ -9,10 +9,15 @@
 	<section class="container">
 		
 		<div class="jumbotron">
-		  <h1 class="display-4">Bienvenido a TropSmart</h1>
+		  <h1 class="display-4" >Bienvenidos a TropSmart</h1>
 		  <p class="lead">Empieza a transportar lo que desees.</p>
 		  <hr class="my-4">
-		  <p>Utiliza la barra de busqueda para buscar un transportista disponible.</p>
+		  <p sec:authorize="hasRole('ROLE_DRIVER')">
+		  	Haga click en <strong>Mis entregas</strong> para ver las solicitudes de los clientes.
+		  </p>
+		  <p href="#" sec:authorize="hasRole('ROLE_CUSTOMER')">
+		  	Haga click en <strong>Mis solicitudes</strong> para ver el estado de sus solicitudes de carga.
+		  </p>
 		  <!--a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a-->
 		</div>
 		
